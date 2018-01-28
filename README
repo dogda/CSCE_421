@@ -1,0 +1,32 @@
+-------------------------------------------------------------------
+
+Kaleb Gaar
+1/26/18
+CSCE 421
+
+Constraint Satisfaction Problem Parser
+
+-------------------------------------------------------------------
+
+This project takes XML files of the XCSP 2.0 file type and 
+transforms them into a custom CSP filetype. It parses the
+file using the InstanceParser class from the abscon toolset
+
+There are two main parts of this piece of the project: the 
+individual components of a CSP object and the CSP creation
+class. The CSP object is made up of two lists: A list of variables
+and a list of constraints. The CSP creation class takes the name
+of a file as an argument and then prints out a string 
+representation of the CSP defined in the file.
+
+To Run: 
+
+
+
+Help Recieved:
+
+ - Abscon System: In addition to the parser, inspiration for the
+ individual data structures was taken from this system. These
+ structures, however, are not clones of each other, and much
+ of the class design occurred before reviewing the Abscon files.
+ - Sam Flint helped me with my build.xml and makefile.
