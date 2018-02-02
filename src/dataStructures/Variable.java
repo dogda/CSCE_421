@@ -31,7 +31,7 @@ public class Variable {
 	}
 	
 	public String toString(){
-		return "Name: " + this.name + ", initial domain: " + this.initialDomain.toString();
+		return "Name: " + this.name + ", initial domain: " + this.initialDomain.toString() + ", current domain: "+ this.currentDomain;
 	}
 
 }

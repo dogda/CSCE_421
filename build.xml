@@ -1,59 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="CSCE421_Phase1">
-    <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../Desktop/Applications/eclipse/"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.8"/>
-    <property name="source" value="1.8"/>
-    <path id="CSCE421_Phase1.classpath">
-        <pathelement location="bin"/>
-        <pathelement location="lib/Tools2008.jar"/>
-    </path>
-    <target name="init">
-        <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src">
-                <exclude name="**/*.ucls"/>
-                <exclude name="**/*.useq"/>
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="clean">
-        <delete dir="bin"/>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <classpath refid="CSCE421_Phase1.classpath"/>
-        </javac>
-    </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-    <target name="createCSP">
-        <java classname="parsing.createCSP" failonerror="true" fork="yes">
-            <arg line="-f input/3queens-intension.xml"/>
-            <classpath refid="CSCE421_Phase1.classpath"/>
-        </java>
-    </target>
+<project>
+
+	<path id="class.path">
+		<pathelement location="build/classes"/>
+		<pathelement location="lib/Tools2008.jar"/>
+		<pathelement path="!{java.class.path}" />
+	</path>
+
+
+	<target name="clean">
+		<delete dir="build" />
+		<delete file="csp.jar"/>
+	</target>
+
+	<target name="compile">
+	<mkdir dir="build/classes" />
+	<javac srcdir="src" destdir="build/classes" includeantruntime="true" >
+		<classpath refid="class.path" />
+	</javac>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar" />
+		<jar destfile="builder/jar/csp.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="solve.Main" />
+			</manifest>
+			<zipgroupfileset dir="lib/" includes="**/*.jar" />
+		</jar>
+		<copy file="build/jar/csp.jar" tofile="csp.jar" />
+	</target>
+
 </project>

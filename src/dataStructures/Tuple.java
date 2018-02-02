@@ -6,35 +6,58 @@
 
 package dataStructures;
 
-public class Pair {
+public class Tuple {
 
-	private int a1;
-	private int a2;
+	private int values[];
 	
-	public Pair(int a1, int a2) {
+	public int[] getValues() {
+		return values;
+	}
+
+	public void setValues(int[] values) {
+		this.values = values;
+	}
+
+	public Tuple(int values[]) {
 		super();
-		this.a1 = a1;
-		this.a2 = a2;
+		this.values = values;
 	}
 	
-	public int getFirstValue() {
-		return a1;
-	}
-	
-	public void setFirstValue(int a1) {
-		this.a1 = a1;
-	}
-	
-	public int getSecondValue() {
-		return a2;
-	}
-	
-	public void setSecondValue(int a2) {
-		this.a2 = a2;
+	public int getValue(int index){
+		return this.values[index];
 	}
 	
 	public String toString(){
-		return "("+a1+","+a2+")";
+		StringBuilder result = new StringBuilder();
+		result.append("(");
+		for(int i = 0; i < this.values.length; i++){
+			result.append(this.values[i]);
+			if(i != this.values.length - 1){
+				result.append(",");
+			}
+		}
+		result.append(")");
+		return result.toString();
+	}
+	
+	public boolean equals(Tuple t){
+		boolean result = true;
+		
+		if(this.values.length == t.getValues().length){
+			//System.out.print("( ");
+			for(int i = 0; i < this.values.length; i++){
+				if(this.values[i] != t.getValues()[i]){
+					result = false;
+				}
+				
+				//System.out.print(this.values[i] + "-" + t.getValues()[i]+",");
+			}
+			//System.out.print(") ");
+		} else {
+			result = false;
+		}
+		//System.out.println(result);
+		return result;
 	}
 	
 }

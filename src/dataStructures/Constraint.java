@@ -57,4 +57,12 @@ public abstract class Constraint {
 	public void setScope(List<Variable> scope) {
 		this.scope = scope;
 	}
+	
+	public boolean allowed(Tuple t){
+		return false;
+	}
+	
+	public int getArity(){
+		return this.scope.size();
+	}
 }

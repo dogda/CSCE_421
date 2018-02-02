@@ -55,4 +55,19 @@ public class Domain {
 		result.append("}");
 		return result.toString();
 	}
+	
+	public void deleteValue(int value){
+		int[] newValues = new int[this.values.length-1];
+		int counter = 0;
+		
+		for(int i = 0; i < this.values.length; i++){
+			if(this.values[i] != value){
+				int a = this.values[i];
+				newValues[counter] = a;
+				counter++;
+			}
+		}
+		
+		this.values = newValues;
+	}
 }
